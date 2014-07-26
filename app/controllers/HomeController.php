@@ -201,7 +201,7 @@ class HomeController extends BaseController {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		$response = curl_exec($ch);
 		curl_close($ch);
-		exit(0);
+		// exit(0);
 	}
 
 	public function sendEmail($recipient, $text)
