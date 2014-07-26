@@ -251,7 +251,7 @@ class HomeController extends BaseController {
 		    "mobile_number" => $recipient,
 		    "shortcode" => $this->chikkaShortCode,
 		    "message_id" => str_pad(rand(), 32, '0', STR_PAD_LEFT),
-		    "message" => $message,
+		    "message" => 'Angel is now on board a Taxi with Plate No.: ' . $message,
 		    "client_id" => $this->chikkaClientId,
 		    "secret_key" => $this->chikkaSecretKey
 		);
