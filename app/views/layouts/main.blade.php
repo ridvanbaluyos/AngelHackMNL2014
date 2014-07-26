@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ParanoiApp</title>
+    <title>ParanoiApp<sup><small>alpha</small></sup></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,7 @@
 
     <!-- Custom CSS -->
     <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/plugins/social-buttons.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="/css/plugins/morris.css" rel="stylesheet">
@@ -46,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/dashboard">ParanoiApp</a>
+                <a class="navbar-brand" href="/dashboard">ParanoiApp<sup><small>alpha</small></sup></a>
             </div>
             <!-- /.navbar-header -->
 

@@ -16,10 +16,17 @@ class HomeController extends BaseController {
 	*/
 
 	protected $layout = 'layouts.main';
+
+	// Chikka
 	protected $chikkaClientId = '';
 	protected $chikkaSecretKey = '';
-	protected $chikkaUrl = 'https://post.chikka.com/smsapi/request';
+	protected $chikkaUrl = 'https://post.chikkpa.com/smsapi/request';
 	protected $chikkaShortCode = '2929088888';
+
+	// Facebook
+	protected $fbAppId = '';
+	protected $fbAppSecret = '';
+	protected $fbAccessToken = '';
 
 	public function showWelcome()
 	{
@@ -109,6 +116,22 @@ class HomeController extends BaseController {
 	public function socialNetworks()
 	{
 		$templateData = array();
+
+		$app = array(
+			"appId" => $this->fbAppId,
+			"secret" => $this->fbAppSecret
+		);
+
+		$permissions = 'publish_stream';
+		$url_app = 'http://angelhack.local/social-networks';
+
+		FacebookConnect::getFacebook($app);
+		$user = FacebookConnect::getUser($permissions, $url_app);
+		$isFbAuthorized = ($user['user_profile']['verified']) ? true : false;
+
+// echo "<pre>";
+// 		var_dump($user);
+
 		return View::make('social_networks')->with('templateData', $templateData);
 	}
 
@@ -163,17 +186,62 @@ class HomeController extends BaseController {
 		$recipients = SmsRecipients::where('user_id', '=', '1')
 						->get();
 
+		// Send SMS Recipients
 		foreach ($recipients as $recipient) {
-			$this->sendSMS($recipient->mobile_number, $message);
+			// $this->sendSMS($recipient->mobile_number, $message);
 		}
 
 		$recipients = array();
 		$recipients = EmailRecipients::where('user_id', '=', '1')
 						->get();
 
+		// Send Mail Recipients
 		foreach ($recipients as $recipient) {
-			$this->sendEmail($recipient, $message);
+			// $this->sendEmail($recipient, $message);
 		}
+
+		$this->postToFacebook($message);
+	}
+
+	public function postToFacebook($message)
+	{
+		$url = 'https://graph.facebook.com/oauth/access_token';
+    	$tokenParams = array(
+	        "type" => "client_cred",
+	        "client_id" => $this->fbAppId,
+	        "client_secret" => $this->fbAppSecret
+        );
+
+    	$accessToken = str_replace('access_token=', '', $this->postUrl($url, $tokenParams));
+
+    	$attachment =  array(
+			'access_token' => $accessToken,
+			'message' => 'test',
+			// 'actions' => json_encode(array('name' => $action_name,'link' => $action_link))
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,'https://graph.facebook.com/me/feed');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $attachment);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //to suppress the curl output
+		$result = curl_exec($ch);
+		var_dump($result);
+		curl_close ($ch);
+	}
+
+	public function postUrl($url, $params)
+	{
+		$ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params, null, '&'));
+	    $ret = curl_exec($ch);
+	    curl_close($ch);
+
+	    return $ret;
 	}
 
 	public function sendSMS($recipient, $message)

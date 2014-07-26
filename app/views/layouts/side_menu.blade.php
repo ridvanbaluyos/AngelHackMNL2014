@@ -11,7 +11,7 @@
                 <a class="{{ Request::is('email') ? 'active' : '' }}" href="/email"><i class="fa fa-envelope fa-fw"></i> Email Recipients</a>
             </li>
             <li>
-                <a class="{{ Request::is('social-networks') ? 'active' : '' }}" href="/social-networks"><i class="fa fa-group fa-fw"></i> Social Networks</a>
+                <a class="{{ Request::is('social-networks') ? 'active' : '' }}" href="/social-networks"><i class="fa fa-share-alt fa-fw"></i> Social Networks</a>
             </li>
         </ul>
     </div>
