@@ -1,25 +1,32 @@
-## Laravel PHP Framework
+## ParanoiApp - Ride Safely. Inform your loved ones.
+Beta Site: [angelhack.ewoklabs.net](http://angelhack.ewoklabs.net) - [hackathon.io Project](http://www.hackathon.io/projects/5163)
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Official entry to the [Manila Angel Hack Spring 2014](http://www.hackathon.io/angelhack80). This project aims to be proactive in the safety of the commuters. By simply sending an SMS, your loved ones will be informed about the Operator Name, Plate Number, and other info of your daily commute. Plus, users also have the option to propagate the information to different platforms (eg. Facebook, Twitter, Emails, etc.)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+### Technology Stack
+* Backend
+    * [PHP](http://php.net/)
+    * [Laravel 4 Framework](http://laravel.com/)
+    * [MySQL](http://www.mysql.com/)
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+* Frontend:
+    * [Twitter Bootstrap 3](http://getbootstrap.com/)
+    * [SB Admin v2.0](http://startbootstrap.com/templates/sb-admin-2/forms.html)
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+* Coding Penmanship:
+    * [Basic Coding Standard PSR-1](http://www.php-fig.org/psr/psr-1/)
+    * [Coding Style Guide PSR-2](http://www.php-fig.org/psr/psr-2/)
 
-## Official Documentation
+* Version Control and Deployment:
+    * [Git](http://git-scm.com/)
+    * [Github](https://github.com)
+    * [SourceTree](http://www.sourcetreeapp.com/)
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+* Infrastructure
+    * [DigitalOcean](https://digitalocean.com/)
+    * [Mailgun](https://mailgun.com/)
 
-### Contributing To Laravel
+### Developers
+* [Ridvan Baluyos](www.ridvanbaluyos.net) - <ridvan@baluyos.net>
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
 
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

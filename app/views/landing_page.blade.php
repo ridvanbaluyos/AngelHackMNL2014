@@ -19,15 +19,16 @@
         <div class="col-lg-12 text-center v-center">
 
             <h1>ParanoiApp</h1>
-          <p class="lead">Sign-up now for a beta pass</p>
+          <p class="lead">Ride Safely. Inform your loved ones.</p>
 
           <br><br><br>
 
           <form class="col-lg-12">
             <div class="input-group" style="width:340px;text-align:center;margin:0 auto;">
-            <input class="form-control input-lg" title="Don't worry. We hate spam, and will not share your email with anyone." placeholder="Enter your email address" type="text">
+              <input class="form-control input-lg" title="Don't worry. We hate spam, and will not share your email with anyone." placeholder="Enter your email address" type="text">
               <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="button">Send</button></span>
             </div>
+            <small>Sign up for a Beta pass now</small>
           </form>
         </div>
 
