@@ -19,6 +19,7 @@ class HomeController extends BaseController {
 	protected $chikkaClientId = '';
 	protected $chikkaSecretKey = '';
 	protected $chikkaUrl = 'https://post.chikka.com/smsapi/request';
+	protected $chikkaShortCode = '2929088888';
 
 	public function showWelcome()
 	{
@@ -37,7 +38,9 @@ class HomeController extends BaseController {
 
 	public function sms()
 	{
-		return View::make('sms');
+		$templateData['recipients'] = SmsRecipients::where('user_id', '=', '1')
+						->get();
+		return View::make('sms')->with('templateData', $templateData);
 	}
 
 	public function smsSubmit()
@@ -88,7 +91,9 @@ class HomeController extends BaseController {
 		        $smsTracker->message = $message;
 		        $smsTracker->timestamp = $timestamp;
 
-		        if ($smsTracker->save()) {
+		        // if ($smsTracker->save()) {
+		        if (1) {
+		        	$this->propagate($message); // let the magic begin!
 		        	echo "Accepted";
 		        	exit;
 		        } else {
@@ -106,5 +111,43 @@ class HomeController extends BaseController {
 			echo "Error";
 			exit;
 		}
+	}
+
+	private function propagate($message)
+	{
+		$recipients = SmsRecipients::where('user_id', '=', '1')
+						->get();
+
+		foreach ($recipients as $recipient) {
+			$this->send($recipient->mobile_number, $message);
+		}
+	}
+
+	public function send($recipient, $message)
+	{
+		$params = array(
+		    "message_type" => "SEND",
+		    "mobile_number" => $recipient,
+		    "shortcode" => $this->chikkaShortCode,
+		    "message_id" => str_pad(rand(), 32, '0', STR_PAD_LEFT),
+		    "message" => $message,
+		    "client_id" => $this->chikkaClientId,
+		    "secret_key" => $this->chikkaSecretKey
+		);
+
+		$query = '';
+		foreach($params as $key=>$param)
+		{
+		    $query .= '&' . $key . '=' . $param;
+		}
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->chikkaUrl);
+		curl_setopt($ch, CURLOPT_POST, count($params));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		exit(0);
 	}
 }
