@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bddb97c268db193b5b2500377ce3bdc0",
+    "hash": "58ae582c1cd0d7cbb2eb37260f9d0754",
     "packages": [
         {
             "name": "bogardo/mailgun",
@@ -827,6 +827,51 @@
                 "x509"
             ],
             "time": "2014-07-05 16:36:21"
+        },
+        {
+            "name": "pitchanon/facebook-connect",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pitchanon/Laravel4-FacebookConnect.git",
+                "reference": "a25dac5e4b72c9089e39864e1e50036882410951"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pitchanon/Laravel4-FacebookConnect/zipball/a25dac5e4b72c9089e39864e1e50036882410951",
+                "reference": "a25dac5e4b72c9089e39864e1e50036882410951",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.x",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pitchanon\\FacebookConnect": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU General Public License (GPL)"
+            ],
+            "authors": [
+                {
+                    "name": "Pitchanon D.",
+                    "email": "Pitchanon.d@gmail.com",
+                    "homepage": "https://github.com/Pitchanon",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A vendor facebook connect package",
+            "homepage": "https://github.com/Pitchanon/Laravel4-FacebookConnect",
+            "keywords": [
+                "facebook",
+                "laravel",
+                "vendor"
+            ],
+            "time": "2014-07-01 08:45:13"
         },
         {
             "name": "predis/predis",
@@ -1830,9 +1875,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "pitchanon/facebook-connect": 20
+    },
     "platform": [
 
     ],
