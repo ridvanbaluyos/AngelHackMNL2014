@@ -16,3 +16,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::get('/sms', 'HomeController@sms');
+Route::post('/sms', 'HomeController@smsSubmit');
+
+// Chikka Routes
+Route::post('/receiver', 'HomeController@chikkaReceiver');

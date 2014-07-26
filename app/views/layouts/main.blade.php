@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ewok Labs</title>
+    <title>ParanoiApp</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Ewok Labs</a>
+                <a class="navbar-brand" href="/dashboard">ParanoiApp</a>
             </div>
             <!-- /.navbar-header -->
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSmsRecipientsTable extends Migration {
+class AddUserIdToSmsRecipientsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,11 +13,8 @@ class CreateSmsRecipientsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('sms_recipients', function($t) {
-            $t->increments('id');
-            $t->string('name', 64);
-            $t->string('mobile_number', 16);
-            $t->timestamps();
+		Schema::table('sms_recipients', function($table) {
+			$table->string('user_id', 64)->after('mobile_number');
 		});
 	}
 
@@ -29,7 +26,9 @@ class CreateSmsRecipientsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('sms_recipients');
+		Schema::table('sms_recipients', function($table) {
+			$table->dropColumn('user_id');
+		});
 	}
 
 }
