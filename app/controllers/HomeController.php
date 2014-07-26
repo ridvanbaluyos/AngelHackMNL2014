@@ -188,7 +188,7 @@ class HomeController extends BaseController {
 
 		// Send SMS Recipients
 		foreach ($recipients as $recipient) {
-			// $this->sendSMS($recipient->mobile_number, $message);
+			$this->sendSMS($recipient->mobile_number, $message);
 		}
 
 		$recipients = array();
@@ -197,10 +197,10 @@ class HomeController extends BaseController {
 
 		// Send Mail Recipients
 		foreach ($recipients as $recipient) {
-			// $this->sendEmail($recipient, $message);
+			$this->sendEmail($recipient, $message);
 		}
 
-		$this->postToFacebook($message);
+		// $this->postToFacebook($message);
 	}
 
 	public function postToFacebook($message)
