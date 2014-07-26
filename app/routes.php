@@ -15,8 +15,16 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/dashboard', 'HomeController@dashboard');
 
+// SMS
 Route::get('/sms', 'HomeController@sms');
 Route::post('/sms', 'HomeController@smsSubmit');
+
+// Email
+Route::get('/email', 'HomeController@email');
+Route::post('/email', 'HomeController@emailSubmit');
+
+// Social Networks
+Route::get('/social-networks', 'HomeController@socialNetworks');
 
 // Chikka Routes
 Route::post('/receiver', 'HomeController@chikkaReceiver');

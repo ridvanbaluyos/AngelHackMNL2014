@@ -63,7 +63,53 @@ class HomeController extends BaseController {
                 ->with('message', '<strong>Ooops! </strong> Something went wrong. Please try again.')
                 ->with('type', 'danger');
 		}
+	}
 
+	public function email()
+	{
+		$templateData['recipients'] = EmailRecipients::where('user_id', '=', '1')
+										->get();
+
+		// $email = 'ridvan@baluyos.net';
+		// $data = array(
+		//     'recipient' => $email,
+		//     'plateNumber' => 'KVM213'
+		// );
+
+		// Mailgun::send('emails.message', $data, function($message) use ($email)
+		// {
+		//     $message->to($email)->subject('alert - Message from Angel');
+		// });
+
+		return View::make('email')->with('templateData', $templateData);
+	}
+
+	public function emailSubmit()
+	{
+		$email = Input::get('email');
+		$name = Input::get('name');
+
+		$emailRecipients = new EmailRecipients;
+		$emailRecipients->email = $email;
+		$emailRecipients->name = $name;
+		$emailRecipients->user_id = 1;
+		$emailRecipients->updated_at     = time();
+
+		if ($emailRecipients->save()) {
+			return Redirect::to('/email')
+                ->with('message', '<strong>Success! </strong> You have sucessfully configured your Email recipients.')
+                ->with('type', 'success');
+		} else {
+			return Redirect::to('/email')
+                ->with('message', '<strong>Ooops! </strong> Something went wrong. Please try again.')
+                ->with('type', 'danger');
+		}
+	}
+
+	public function socialNetworks()
+	{
+		$templateData = array();
+		return View::make('social_networks')->with('templateData', $templateData);
 	}
 
 	public function chikkaReceiver()
@@ -91,8 +137,7 @@ class HomeController extends BaseController {
 		        $smsTracker->message = $message;
 		        $smsTracker->timestamp = $timestamp;
 
-		        // if ($smsTracker->save()) {
-		        if (1) {
+		        if ($smsTracker->save()) {
 		        	$this->propagate($message); // let the magic begin!
 		        	echo "Accepted";
 		        	exit;
@@ -119,11 +164,19 @@ class HomeController extends BaseController {
 						->get();
 
 		foreach ($recipients as $recipient) {
-			$this->send($recipient->mobile_number, $message);
+			$this->sendSMS($recipient->mobile_number, $message);
+		}
+
+		$recipients = array();
+		$recipients = EmailRecipients::where('user_id', '=', '1')
+						->get();
+
+		foreach ($recipients as $recipient) {
+			$this->sendEmail($recipient, $message);
 		}
 	}
 
-	public function send($recipient, $message)
+	public function sendSMS($recipient, $message)
 	{
 		$params = array(
 		    "message_type" => "SEND",
@@ -149,5 +202,20 @@ class HomeController extends BaseController {
 		$response = curl_exec($ch);
 		curl_close($ch);
 		exit(0);
+	}
+
+	public function sendEmail($recipient, $text)
+	{
+		$plateNumber = $text;
+		$email = $recipient->email;
+		$data = array(
+		    'recipient' => $email,
+		    'plateNumber' => $plateNumber
+		);
+
+		Mailgun::send('emails.message', $data, function($message) use ($email)
+		{
+		    $message->to($email)->subject('alert - Message from Angel');
+		});
 	}
 }
