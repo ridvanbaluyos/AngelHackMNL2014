@@ -20,7 +20,7 @@ class HomeController extends BaseController {
 	// Chikka
 	protected $chikkaClientId = '';
 	protected $chikkaSecretKey = '';
-	protected $chikkaUrl = 'https://post.chikkpa.com/smsapi/request';
+	protected $chikkaUrl = 'https://post.chikka.com/smsapi/request';
 	protected $chikkaShortCode = '2929088888';
 
 	// Facebook
@@ -269,7 +269,6 @@ class HomeController extends BaseController {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		$response = curl_exec($ch);
 		curl_close($ch);
-		// exit(0);
 	}
 
 	public function sendEmail($recipient, $text)
