@@ -18,14 +18,14 @@ class HomeController extends BaseController {
 	protected $layout = 'layouts.main';
 
 	// Chikka
-	protected $chikkaClientId = '';
-	protected $chikkaSecretKey = '';
+	protected $chikkaClientId = '6ec9c69f01b3e4dceaef421c4165333c16379e0a7b63ab5a15cb405bb57316ff';
+	protected $chikkaSecretKey = '16dc740ecb04243f40117cf6e7294977b6c3771c4563dfbaada625d42b3f5636';
 	protected $chikkaUrl = 'https://post.chikka.com/smsapi/request';
 	protected $chikkaShortCode = '2929088888';
 
 	// Facebook
-	protected $fbAppId = '';
-	protected $fbAppSecret = '';
+	protected $fbAppId = '661273323957204';
+	protected $fbAppSecret = '7c8e2576289273b16f808b993e045196';
 	protected $fbAccessToken = '';
 
 	public function showWelcome()
@@ -262,12 +262,14 @@ class HomeController extends BaseController {
 		    $query .= '&' . $key . '=' . $param;
 		}
 
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->chikkaUrl);
 		curl_setopt($ch, CURLOPT_POST, count($params));
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		$response = curl_exec($ch);
+
 		curl_close($ch);
 	}
 
