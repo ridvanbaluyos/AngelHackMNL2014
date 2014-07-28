@@ -8,6 +8,7 @@ Official entry to the [Manila Angel Hack Spring 2014](http://www.hackathon.io/an
     * [PHP](http://php.net/)
     * [Laravel 4 Framework](http://laravel.com/)
     * [MySQL](http://www.mysql.com/)
+    * [Chikka API](http://api.chikka.com/)
 
 * Frontend:
     * [Twitter Bootstrap 3](http://getbootstrap.com/)
