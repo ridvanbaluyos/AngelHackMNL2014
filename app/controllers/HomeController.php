@@ -14,65 +14,6 @@ class HomeController extends BaseController
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-
-<<<<<<< HEAD
-    protected $layout = 'layouts.main';
-
-    // Chikka
-    protected $chikkaClientId = '6ec9c69f01b3e4dceaef421c4165333c16379e0a7b63ab5a15cb405bb57316ff';
-    protected $chikkaSecretKey = '16dc740ecb04243f40117cf6e7294977b6c3771c4563dfbaada625d42b3f5636';
-    protected $chikkaUrl = 'https://post.chikka.com/smsapi/request';
-    protected $chikkaShortCode = '2929088888';
-
-    // Facebook
-    protected $fbAppId = '661273323957204';
-    protected $fbAppSecret = '7c8e2576289273b16f808b993e045196';
-    protected $fbAccessToken = '';
-
-    public function showWelcome()
-    {
-        return View::make('hello');
-    }
-
-    public function index()
-    {
-        return View::make('landing_page');
-    }
-
-    public function requestBetaPass()
-    {
-        $email = Input::get("email");
-
-        return View::make('landing_page');
-    }
-
-    public function dashboard()
-    {
-        return View::make('dashboard');
-    }
-
-    public function sms()
-    {
-        $templateData['recipients'] = SmsRecipients::where('user_id', '=', '1')
-                        ->get();
-
-        return View::make('sms')->with('templateData', $templateData);
-    }
-
-    public function smsSubmit()
-    {
-        $contactNumber = e(Input::get('contact_number'));
-        $contactName = e(Input::get('contact_name'));
-
-        $smsRecipients = new SmsRecipients();
-        $smsRecipients->name = $contactName;
-        $smsRecipients->mobile_number = $contactNumber;
-        $smsRecipients->user_id = 1;
-        $smsRecipients->updated_at     = time();
-
-        if ($smsRecipients->save()) {
-            return Redirect::to('/sms')
-=======
 	protected $layout = 'layouts.main';
 
 	// Chikka
@@ -121,7 +62,6 @@ class HomeController extends BaseController
 
 		if ($smsRecipients->save()) {
 			return Redirect::to('/sms')
->>>>>>> 75dffd668592c57e60e06614bf203cd6e05dd66e
                 ->with('message', '<strong>Success! </strong> You have sucessfully configured your SMS recipients.')
                 ->with('type', 'success');
         } else {
