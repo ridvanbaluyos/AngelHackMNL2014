@@ -15,6 +15,7 @@ class HomeController extends BaseController
 	|
 	*/
 
+<<<<<<< HEAD
     protected $layout = 'layouts.main';
 
     // Chikka
@@ -71,6 +72,56 @@ class HomeController extends BaseController
 
         if ($smsRecipients->save()) {
             return Redirect::to('/sms')
+=======
+	protected $layout = 'layouts.main';
+
+	// Chikka
+	protected $chikkaClientId = '';
+	protected $chikkaSecretKey = '';
+	protected $chikkaUrl = 'https://post.chikka.com/smsapi/request';
+	protected $chikkaShortCode = '2929088888';
+
+	// Facebook
+	protected $fbAppId = '';
+	protected $fbAppSecret = '';
+	protected $fbAccessToken = '';
+
+	public function showWelcome()
+	{
+		return View::make('hello');
+	}
+
+	public function index()
+	{
+		return View::make('landing_page');
+	}
+
+	public function dashboard()
+	{
+		return View::make('dashboard');
+	}
+
+	public function sms()
+	{
+		$templateData['recipients'] = SmsRecipients::where('user_id', '=', '1')
+						->get();
+		return View::make('sms')->with('templateData', $templateData);
+	}
+
+	public function smsSubmit()
+	{
+		$contactNumber = Input::get('contact_number');
+		$contactName = Input::get('contact_name');
+
+		$smsRecipients = new SmsRecipients;
+		$smsRecipients->name = $contactName;
+		$smsRecipients->mobile_number = $contactNumber;
+		$smsRecipients->user_id = 1;
+		$smsRecipients->updated_at     = time();
+
+		if ($smsRecipients->save()) {
+			return Redirect::to('/sms')
+>>>>>>> 75dffd668592c57e60e06614bf203cd6e05dd66e
                 ->with('message', '<strong>Success! </strong> You have sucessfully configured your SMS recipients.')
                 ->with('type', 'success');
         } else {
